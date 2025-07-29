@@ -4,7 +4,7 @@
 Motorcycle::Motorcycle() : make(""), model(""), year(0), engineCC(0.0) {}
 
 // Parameterized constructor
-Motorcycle::Motorcycle(std::string make, std::string model, int year, double engineCC)
+Motorcycle::Motorcycle(std::string make, std::string model, int year, double engineCC, Mover* mover)
   : make(make), model(model), year(year), engineCC(engineCC) {
 }
 
@@ -37,11 +37,22 @@ Motorcycle& Motorcycle::operator=(const Motorcycle& otherMotorcycle) {
   return *this;
 }
 
+string Motorcycle::move()
+{
+  if (getMover()) return getMover()->move();
+  return "No mover.";
+}
+
 // Output operator
-std::ostream& operator<<(std::ostream& strm, const Motorcycle& motorcycle) {
-  strm << "Make: " << motorcycle.make
-    << ", Model: " << motorcycle.model
-    << ", Year: " << motorcycle.year
-    << ", Engine CC: " << motorcycle.engineCC;
+std::ostream& operator<<(std::ostream& strm, Motorcycle& motorcycle) {
+  strm << " A " << motorcycle.getMake() << " " << motorcycle.getModel() << " "
+    << motorcycle.getYear() << " " << motorcycle.getEngineCC();
+
+  if (motorcycle.getMover()) {
+    strm << " " << motorcycle.move();
+  }
+  else {
+    strm << " No mover";
+  }
   return strm;
 }

@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <string>
-
-class Motorcycle {
+#include "Vehicle.h"
+class Motorcycle : public Vehicle {
 private:
   std::string make;
   std::string model;
@@ -14,7 +14,7 @@ private:
 public:
   // Constructors
   Motorcycle();
-  Motorcycle(std::string make, std::string model, int year, double engineCC);
+  Motorcycle(std::string make, std::string model, int year, double engineCC, Mover* mover);
   Motorcycle(const Motorcycle& otherMotorcycle);
 
   // Getter and Setter
@@ -24,8 +24,10 @@ public:
   // Assignment operator
   Motorcycle& operator=(const Motorcycle& otherMotorcycle);
 
+  string move() override;
+
   // Friend function for output operator
-  friend std::ostream& operator<<(std::ostream& strm, const Motorcycle& motorcycle);
+  friend std::ostream& operator<<(std::ostream& strm, Motorcycle& motorcycle);
 };
 
 #endif // MOTORCYCLE_H 

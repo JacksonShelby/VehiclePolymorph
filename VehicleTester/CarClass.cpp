@@ -8,7 +8,7 @@ Car::Car() : Vehicle(){
 
 }
 
-Car::Car(string make, string model, int year, int passengerCapacity) : 
+Car::Car(string make, string model, int year, int passengerCapacity, Mover* mover) :
 	Vehicle( make,  model, year), passengerCapacity(passengerCapacity) {
 	
 }
@@ -33,9 +33,22 @@ Car& Car::operator=(Car& otherCar) {
 	return *this;
 }
 
+string Car::move()
+{
+	if (getMover()) return getMover()->move();
+	return "No mover.";
+}
+
 ostream& operator<<(ostream& strm, Car& car) {
 	strm << "A " << car.getYear() << " "
 		<< car.getMake() << " "
 		<< car.getModel() << " " << car.getPassengerCapacity();
+
+	if (car.getMover()) {
+		strm << " " << car.move();
+	}
+	else {
+		strm << " No mover";
+	}
 	return strm;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Mover.h"
 using namespace std;
 class Vehicle
 
@@ -31,11 +32,14 @@ private:
 	string make;
 	string model;
 	int year;
+	Mover* mover;
+
 public:
 	// constructors
 	Vehicle();
 	Vehicle(string make, string model, int year);
 	Vehicle(Vehicle& otherVehicle);
+	Vehicle(Mover* mover);
 
 	string getMake();
 	string getModel();
@@ -43,6 +47,11 @@ public:
 	void setMake(string make);
 	void setModel(string model);
 	void setYear(int year);
+
+	Mover* getMover() const;
+	void setMover(Mover* mover);
+
+	virtual string move() = 0;
 
 	Vehicle& operator=(Vehicle& otherVehicle);
 	friend ostream& operator<<(ostream& strm, Vehicle& vehicle);

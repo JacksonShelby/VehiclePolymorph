@@ -18,6 +18,14 @@ Vehicle::Vehicle(Vehicle& otherVehicle) {
 	}
 }
 
+Vehicle::Vehicle(Mover* mover)
+{
+	make = "unknown";
+	model = "unknown";
+	year = 0;
+	this->mover = mover;
+}
+
 string Vehicle::getMake() {
 	return make;
 }
@@ -36,6 +44,17 @@ void Vehicle::setModel(string model) {
 void Vehicle::setYear(int year) {
 	this->year = year;
 }
+
+Mover* Vehicle::getMover() const
+{
+	return mover;
+}
+
+void Vehicle::setMover(Mover* mover)
+{
+	this->mover = mover;
+}
+
 
 Vehicle& Vehicle::operator=(Vehicle& otherVehicle) {
 	if (this != &otherVehicle) {
